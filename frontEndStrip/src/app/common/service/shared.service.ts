@@ -11,4 +11,8 @@ export class SharedService {
   getCheckoutLink(data: any) {
     return this.http.post(this.baseURL + '/create-checkout', data);
   }
+
+  getSimplePayLink(data: any) {
+    return this.http.post(this.baseURL + '/checkout-amount', data);
+  }
 }

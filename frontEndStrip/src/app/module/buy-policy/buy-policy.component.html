@@ -1,0 +1,28 @@
+<div>
+    <div class="col-md-6 my-5 offset-3 card">
+        <div class="card-header">
+            <h6>Buy Policy </h6>
+        </div>
+        <div class="card-body">
+        <div>
+
+            <form #formdata="ngForm" (submit)="checkOut()">
+                <div class="row mx-2 my-4">
+                    <div class="form-group col-md-4">
+                        <label for="">Enter Policy Id</label>
+                        <input name="policyId" placeholder="Policy Id" required type="text" [(ngModel)]="PolicyId" class="form-control">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="">Enter Policy Amount</label>
+                        <input name="amount" placeholder="Amount" required type="text" [(ngModel)]="PolicyAmount" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-warning form-control" value="Checkout">
+                </div>
+            </form>
+
+        </div>
+        </div>
+    </div>
+</div>

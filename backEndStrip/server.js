@@ -40,6 +40,30 @@ app.post("/create-checkout", async (req, res) => {
   }
 });
 
+app.post("/checkout-amount", async (req, res) => {
+    try {
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ["card"],
+        mode: "payment",
+        line_items: [{
+            price_data: {
+              currency: "inr",
+              product_data: {
+                name: 'Purchase Policy '+req.body.policyId,
+              },
+              unit_amount: (req.body.amount*100),
+            },
+            quantity: 1,
+          }],
+        success_url: `${process.env.CLIENT_URL}?session_id={CHECKOUT_SESSION_ID}&policyId=${req.body.policyId}`,
+        cancel_url: `${process.env.CLIENT_URL}`,
+      });
+      res.json(session);
+    } catch (e) {
+      res.status(500).json({ error: e.message });
+    }
+  });
+
 app.get("/", (req, res) => {
   res.json("hello");
 });
